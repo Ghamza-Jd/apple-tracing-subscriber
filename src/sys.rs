@@ -6,16 +6,18 @@ use std::os::raw::c_char;
 
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
-pub struct os_log_s;
+pub struct os_log_s {
+    _unused: [u8; 0],
+}
 
 pub type os_log_t = *mut os_log_s;
 pub type os_log_type_t = u8;
 
-pub const OS_LOG_TYPE_DEFAULT: os_log_type_t = 0;
-pub const OS_LOG_TYPE_INFO: os_log_type_t = 1;
-pub const OS_LOG_TYPE_DEBUG: os_log_type_t = 2;
-pub const OS_LOG_TYPE_ERROR: os_log_type_t = 10;
-pub const OS_LOG_TYPE_FAULT: os_log_type_t = 11;
+pub const OS_LOG_TYPE_DEFAULT: os_log_type_t = 0x00;
+pub const OS_LOG_TYPE_INFO: os_log_type_t = 0x01;
+pub const OS_LOG_TYPE_DEBUG: os_log_type_t = 0x02;
+pub const OS_LOG_TYPE_ERROR: os_log_type_t = 0x10;
+pub const OS_LOG_TYPE_FAULT: os_log_type_t = 0x11;
 
 // Provided by the OS.
 extern "C" {
